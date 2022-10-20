@@ -18,21 +18,33 @@ class ViewController: UIViewController {
     }
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginScreen?.delegate = self
         self.loginScreen?.configTextFieldDelegate(delegate: self)
-
+        
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-
-  
 }
+    
+    extension ViewController:LoginScreenProtocol{
+            
+        func actionLoginButton(){
+            print("Deu Certo, Login Button")
+        }
+        
+        func actionRegisterButton(){
+            print("Deu Certo, Register Button")
+        }
+    }
+  
 
-extension UIViewController:UITextFieldDelegate {
+
+extension ViewController:UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

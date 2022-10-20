@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol LoginScreenProtocol:class{
+    func actionLoginButton()
+    func actionRegisterButton()
+}
+
 class LoginScreen: UIView {
+    
+     weak var delegate:LoginScreenProtocol?
     
     lazy var loginLabel: UILabel = {
         let label = UILabel()
@@ -24,7 +31,7 @@ class LoginScreen: UIView {
         image.image = UIImage(named: "logo")
         image.tintColor = .blue
         image.contentMode = .scaleAspectFit
-        //image.backgroundColor = .green
+      
         
         return image
     }()
@@ -67,6 +74,8 @@ class LoginScreen: UIView {
         button.clipsToBounds = true
         button.layer.cornerRadius = 7.5
         button.backgroundColor = UIColor(red: 65/255, green: 105/255, blue: 255/255, alpha: 1.0)
+        button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
+        
         
         
         return button
@@ -78,6 +87,7 @@ class LoginScreen: UIView {
         button.setTitle("Não tem conta? Cadastra-se", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(self.tappedRegisterButton), for: .touchUpInside)
         
         return button
     }()
@@ -92,7 +102,7 @@ class LoginScreen: UIView {
     
     private func configBackGround(){
         
-        self.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 2.5)
     }
     
     private func configSuperView (){
@@ -109,6 +119,14 @@ class LoginScreen: UIView {
         self.emailTextField.delegate = delegate
         self.passwordTextField.delegate = delegate
         
+    }
+    
+    @objc private func tappedLoginButton(){
+        self.delegate?.actionLoginButton()
+    }
+    
+    @objc private func tappedRegisterButton(){
+        self.delegate?.actionRegisterButton()
     }
     
     
