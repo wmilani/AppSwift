@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
     
     
     var loginScreen: LoginScreen?
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginScreen?.delegate = self
+        self.loginScreen?.delegate (delegate: self)
         self.loginScreen?.configTextFieldDelegate(delegate: self)
         
     }
@@ -30,21 +30,23 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
+
+
+extension LoginVC: LoginScreenProtocol {
     
-    extension ViewController:LoginScreenProtocol{
-            
-        func actionLoginButton(){
-            print("Deu Certo, Login Button")
-        }
-        
-        func actionRegisterButton(){
-            print("Deu Certo, Register Button")
-        }
+    func actionLoginButton(){
+        print("Deu certo Login Button")
     }
-  
-
-
-extension ViewController:UITextFieldDelegate {
+    
+    func actionRegisterButton() {
+        print("Deu certo Register Button")
+        let vc: RegisterVC = RegisterVC()
+        self.navigationController?.pushViewController(vc, animated:true)
+    }
+    
+}
+    
+extension LoginVC:UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

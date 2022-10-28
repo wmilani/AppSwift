@@ -7,14 +7,18 @@
 
 import UIKit
 
-protocol LoginScreenProtocol:class{
+protocol LoginScreenProtocol: AnyObject{
     func actionLoginButton()
     func actionRegisterButton()
 }
 
 class LoginScreen: UIView {
     
-     weak var delegate:LoginScreenProtocol?
+     private weak var delegate:LoginScreenProtocol?
+    
+    func delegate (delegate:LoginScreenProtocol?) {
+        self.delegate = delegate
+    }
     
     lazy var loginLabel: UILabel = {
         let label = UILabel()
