@@ -88,7 +88,7 @@ class RegisterScreen: UIView {
     }
     
     private func configBackGround(){
-        self.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 2.0)
     }
     
     public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
