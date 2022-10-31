@@ -16,17 +16,19 @@ class RegisterVC: UIViewController {
         self.view = self.registerScreen
     }
     
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      
+        self.registerScreen?.configTextFieldDelegate(delegate:self)
+    
         
     }
     
+}
 
-    
-
+extension RegisterVC:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
